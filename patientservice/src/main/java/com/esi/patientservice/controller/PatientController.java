@@ -28,4 +28,11 @@ public class PatientController {
         return ResponseEntity.ok("Patient info recieved");
     }
 
+    @GetMapping("/patient-data/{patientId}")
+    public ResponseEntity<String> getPatientData(@PathVariable String patientId) {
+        var patientData = patientService.getPatientData(patientId)
+            .orElseThrow();
+        return ResponseEntity.ok(patientData);
+    }
+
 }

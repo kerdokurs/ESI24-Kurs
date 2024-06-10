@@ -2,6 +2,7 @@ package com.esi.patientservice.service;
 
 import com.esi.patientservice.model.Patient;
 import com.esi.patientservice.repository.PatientRepository;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.esi.patientservice.dto.PatientDto;
@@ -24,4 +25,8 @@ public class PatientService {
         patientRepository.save(patient);
     }
 
+    public Optional<String> getPatientData(String patientId) {
+        var patient = patientRepository.findById(patientId);
+        return patient.map(Patient::getPatientData);
+    }
 }
